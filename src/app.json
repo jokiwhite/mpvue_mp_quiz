@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/answer/main",
+    "pages/logs/main",
+    "pages/personal/main",
+    "pages/record/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "计网助手",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+
+    "list": [{
+      "text": "首页",
+      "pagePath": "pages/answer/main",
+      "iconPath": "static/tabs/home1-activate.png",
+      "selectedIconPath": "static/tabs/home1.png"
+    }, {
+      "text": "答题",
+      "pagePath": "pages/personal/main",
+      "iconPath": "static/tabs/answer-activate.png",
+      "selectedIconPath": "static/tabs/answer.png"
+    },{
+      "text": "答题记录",
+      "pagePath": "pages/record/main",
+      "iconPath": "static/tabs/record-activate.png",
+      "selectedIconPath": "static/tabs/record.png"
+    }],
+    "position": "bottom"
+  },
+  "usingComponents": {
+    "van-button": "vant-weapp/dist/button/index",
+    "van-tabbar": "vant-weapp/dist/tabbar/index",
+    "van-tabbar-item": "vant-weapp/dist/tabbar-item/index"
+    }
+}
