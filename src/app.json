@@ -19,12 +19,12 @@
 
     "list": [{
       "text": "首页",
-      "pagePath": "pages/answer/main",
+      "pagePath": "pages/personal/main",
       "iconPath": "static/tabs/home1-activate.png",
       "selectedIconPath": "static/tabs/home1.png"
     }, {
       "text": "答题",
-      "pagePath": "pages/personal/main",
+      "pagePath": "pages/answer/main",
       "iconPath": "static/tabs/answer-activate.png",
       "selectedIconPath": "static/tabs/answer.png"
     },{
