@@ -1,43 +1,66 @@
-<template> 
-    <div>
-     <!-- <van-button type="primary" @click="jump">路由跳转</van-button> -->
-     <van-cell-group>
-      <van-field value="答题进度" input-align=center readonly />
-    </van-cell-group>
-     <van-progress :percentage="50" />
-
-
-    <van-form @submit="onSubmit">
-        <van-field
-  label="题目说明"
-  
-  autosize
-  type="textarea"
-  readonly 
-  value="请简要说明域名解析系统的工作过程（简述DNS提供的一些重要服务，以及整个DNS系统有哪几类域名服务器组成？）简述DNS应用系统的主要作用,系统组成，以及工作原理"
-/>
-    </van-form>
-
-
-    </div>
-    
+<template>
+  <div>
+  <div v-for="item in groupList">
+    <van-panel :title="item.group_name" :desc="item.describe" :status="item.status">
+      <div style="text-align: right">
+        <van-button size="small" type="info" @click="jump(item.id)">开始答题</van-button>
+      </div>
+    </van-panel>
+  </div>
+    <van-toast id="van-toast" />
+  </div>
 </template>
 
 <script>
+import Toast from "../../../dist/wx/vant-weapp/dist/toast/toast";
+import {mapState} from "vuex";
+
 export default {
   data () {
     return {
+      openid: "",
+      groupList: []
     }
   },
-
+  computed: {
+    ...mapState(['openid'])
+  },
   methods: {
-  jump(){
-      this.$router.push('/pages/logs/main')
+    jump(id){
+      this.openid = this.$store.state.openid
+      if(this.openid===""){
+        Toast({message :'请先使用微信登陆再回答问题', duration:2000, mask: true,forbidClick:true});
 
+        new Promise((resolve) => setTimeout(resolve, 2000)).then(
+          ()=>{
+          wx.switchTab({
+            url: '/pages/personal/main'
+          })
+        })
+
+      }else{
+        wx.navigateTo({
+          url: '/pages/answerDetail/main?groupId=' + id
+        })
+      }
     }
   },
+  onShow(){
+    this.openid = this.$store.state.openid
+    this.$get({
+      url: "/groupList/index", //连接的网址
+      data: {
+        wx_id: this.openid
+      } //需要的参数
+    }).then(res => {
+      if(res.status===200){
+        this.groupList = res.data
+      }
+      console.log(res);
+    });
+  },
+  beforeMount () {
 
-  created () {
   }
 }
 </script>

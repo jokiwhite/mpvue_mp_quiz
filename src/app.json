@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/answer/main",
-    "pages/logs/main",
     "pages/personal/main",
-    "pages/record/main"
+    "pages/logs/main",
+    "pages/record/main",
+    "pages/answerDetail/main",
+    "pages/recordDetail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,9 +39,13 @@
   },
   "usingComponents": {
     "van-button": "vant-weapp/dist/button/index",
-    "van-progress": "vant-weapp/dist/progress/index",
-    "van-cell-group": "vant-weapp/dist/cell-group/index",
+    "van-tabbar": "vant-weapp/dist/tabbar/index",
+    "van-tabbar-item": "vant-weapp/dist/tabbar-item/index",
+    "van-panel": "vant-weapp/dist/panel/index",
+    "van-card": "vant-weapp/dist/card/index",
     "van-field": "vant-weapp/dist/field/index",
-    "van-form": "vant-weapp/dist/form/index"
+    "van-toast": "vant-weapp/dist/toast/index",
+    "van-tab": "vant-weapp/dist/tab/index",
+    "van-tabs": "vant-weapp/dist/tabs/index"
     }
 }
