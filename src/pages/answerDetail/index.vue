@@ -3,8 +3,9 @@
 <div>
     <van-tabs type="card" animated swipeable color="#1989fa">
     <van-tab v-for="(item,index) in questionList" :key="index" :title="'问题' + (index+1)">
-      <van-form @submit="onSubmit">
+      <van-form @submit="onSubmit" >
         <van-field 
+         
           v-model='titleList[index]'
           autosize
           readonly 
@@ -13,8 +14,8 @@
           />
          <van-tag type="primary" size="large">选择题</van-tag>
         
-          <van-radio-group v-model="radio[index]" @click="handleChange()">
-  <van-cell-group>
+          <van-radio-group  v-model="radio[index]" @click="handleChange()">
+  <van-cell-group >
     <van-cell :title="titleA[index]"  size="large" clickable @click="changeRadio0(index)">
       <van-toast id="van-toast" />
         
@@ -107,12 +108,24 @@ export default {
 //        this.question_num=0
 // },
   methods: {
-
      submitMine() {
-      console.log(this.question_id)
+      var ChooseAnswer = JSON.parse(JSON.stringify(this.question_id))
+      console.log(ChooseAnswer)
+       this.$post({
+         url: "/questionList/questionIdList", //连接的网址
+          data: {
+            ChooseAnswer: ChooseAnswer,
+            group_id: this.groupId,
+            openId: this.openid
+          }
+      }).then(response =>{
+          if(response.code===200){
+            // Toast.success('提交成功');
+          }
+      })
     },
     test(){
-      console.log(this.question_id)
+     
     },
     changeRadio0(index){
       
@@ -150,8 +163,8 @@ export default {
     },
     handleChange(){
 	    this.$forceUpdate();
-    
-}
+    }
+        
   },
   beforeMount () {
     this.openid = this.$store.state.openid
@@ -162,6 +175,11 @@ export default {
         group_id: this.groupId
       } //需要的参数
     }).then(res => {
+      if(res.code === 201){
+      wx.navigateTo({
+          url: '/pages/empty/main'
+        })
+      }
       if (res.code === 200) {
         
         this.questionList = res.data.list
@@ -183,6 +201,7 @@ export default {
        console.log(this.question_num)
   
       }
+      
     })
   }
 }

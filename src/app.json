@@ -5,7 +5,8 @@
     "pages/logs/main",
     "pages/record/main",
     "pages/answerDetail/main",
-    "pages/recordDetail/main"
+    "pages/recordDetail/main",
+    "pages/empty/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -55,6 +56,7 @@
     "van-goods-action":"vant-weapp/dist/goods-action/index",
     "van-goods-action-icon":"vant-weapp/dist/goods-action-icon/index",
     "van-goods-action-button":"vant-weapp/dist/goods-action-button/index",
-    "van-tag": "vant-weapp/dist/tag/index"
+    "van-tag": "vant-weapp/dist/tag/index",
+    "van-empty" :"vant-weapp/dist/empty/index"
     }
 }
